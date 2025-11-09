@@ -25,7 +25,6 @@ public class UsuarioController {
 
     /**
      * POST: Endpoint público para el registro de nuevos usuarios.
-     * (Usaría un DTO de Registro en un proyecto real).
      */
     @PostMapping("/registro")
     public ResponseEntity<Usuario> registrarUsuario(@RequestBody Usuario usuario) {
@@ -35,7 +34,6 @@ public class UsuarioController {
 
     /**
      * GET: Obtener el perfil de un usuario por ID.
-     * (Idealmente, protegido para que solo el usuario logueado pueda ver su propio perfil).
      */
     @GetMapping("/{idUsuario}")
     public ResponseEntity<Usuario> obtenerUsuario(@PathVariable Long idUsuario) {
@@ -43,8 +41,6 @@ public class UsuarioController {
         return ResponseEntity.ok(usuario);
     }
 
-    // NOTA: El endpoint de LOGIN no se define aquí, sino que se maneja
-    // a través de Spring Security (ej. /login), que llama a UsuarioService.
 
     @PostMapping("/login")
     public ResponseEntity<?> login(@RequestBody LoginRequest loginRequest) {
@@ -56,7 +52,6 @@ public class UsuarioController {
 
         if (usuario.isPresent()) {
             // ÉXITO: Autenticación exitosa.
-            // En un proyecto real, aquí se genera un JWT o se inicia la sesión.
             return ResponseEntity.ok(
                     new LoginResponse("Autenticación exitosa. Bienvenido, " + usuario.get().getNombre(), usuario.get().getIdUsuario())
             );
@@ -67,9 +62,6 @@ public class UsuarioController {
         }
     }
 
-    // DTO auxiliar para estructurar la respuesta del login.
-    // Esto debería ir en un archivo separado LoginResponse.java en el DTO package,
-    // pero lo anidamos aquí por simplicidad.
     private static class LoginResponse {
         public String mensaje;
         public Long idUsuario;

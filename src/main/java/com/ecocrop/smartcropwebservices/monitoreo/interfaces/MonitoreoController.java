@@ -24,17 +24,17 @@ public class MonitoreoController {
     }
 
     /**
-     * POST: Endpoint real para recibir datos de un dispositivo (simulando ingesta).
+     * POST: Endpoint real para recibir datos de un dispositivo
      */
-    @PostMapping("/ingestar")
+    @PostMapping("/ingresar")
     public ResponseEntity<RegistroDato> ingestarDato(@RequestBody RegistroDato registroDato) {
-        // En producción, aquí se usaría un DTO, pero usamos la entidad para simplificar la ingesta.
+
         RegistroDato savedDato = monitoreoService.recibirYProcesarDato(registroDato);
         return new ResponseEntity<>(savedDato, HttpStatus.CREATED);
     }
 
     /**
-     * GET: Obtener el historial de datos para una gráfica.
+     * GET: Obtener el historial de datos para una grafica que no vamos a hacer xddd.
      */
     @GetMapping("/historial/{idDispositivo}")
     public ResponseEntity<List<RegistroDato>> obtenerHistorial(

@@ -13,7 +13,7 @@ public class RegistroDato {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long idRegistro; // BIGINT en SQL
+    private Long idRegistro;
 
     // FK al Dispositivo
     private String idDispositivo;

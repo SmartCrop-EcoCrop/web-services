@@ -43,7 +43,7 @@ public class ContenidoController {
             guias = contenidoService.obtenerGuiasPorCultivo(cultivo);
         } else {
             // Lógica sin filtro: delegamos al Servicio
-            guias = contenidoService.obtenerTodasLasGuias(); // <-- ¡CORRECCIÓN AQUÍ!
+            guias = contenidoService.obtenerTodasLasGuias();
         }
         return ResponseEntity.ok(guias);
     }
@@ -63,8 +63,6 @@ public class ContenidoController {
 
     @PostMapping("/noticias")
     public ResponseEntity<Noticia> publicarNoticia(@RequestBody Noticia noticia) {
-        // En un proyecto real, se usaría un DTO de Request aquí,
-        // pero usamos la entidad 'Noticia' para simplificar la publicación.
         Noticia noticiaPublicada = contenidoService.publicarNoticia(noticia);
         return new ResponseEntity<>(noticiaPublicada, HttpStatus.CREATED);
     }

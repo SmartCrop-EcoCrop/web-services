@@ -24,9 +24,9 @@ public class AlertaController {
     }
 
     /**
-     * GET: Obtiene la lista de alertas activas para una parcela específica (para el dashboard).
+     * Trae la lista de alertas que estan activas para una parcela (lo que se ve en la pantalla principal).
      * @param idParcela ID de la Parcela.
-     * @return Lista de Alertas activas.
+     * @return Lista de Alertas que estan prendidas.
      */
     @GetMapping("/parcela/{idParcela}/activas")
     public ResponseEntity<List<Alerta>> obtenerAlertasActivas(@PathVariable Long idParcela) {
@@ -35,7 +35,7 @@ public class AlertaController {
     }
 
     /**
-     * GET: Permite a los administradores ver las reglas que disparan las alertas.
+     * Endpoint para ver las reglas que hacen que salten las alertas (solo para los que administran).
      * @return Lista de reglas CondicionOptima.
      */
     @GetMapping("/reglas-optimas")
@@ -45,8 +45,7 @@ public class AlertaController {
     }
 
     /**
-     * POST: Endpoint de prueba para simular la evaluación de datos IoT
-     * NOTA: Este endpoint solo es para prueba/desarrollo. En producción, la lógica se ejecuta en segundo plano.
+     * Endpoint de P R U E B A: Simula la entrada de datos de sensores.
      */
     @PostMapping("/evaluar-datos-prueba")
     public ResponseEntity<Void> evaluarDatosDePrueba(
@@ -56,6 +55,6 @@ public class AlertaController {
             @RequestParam Double humedad) {
 
         alertaService.evaluarYGenerarAlerta(idParcela, tipoCultivo, temp, humedad);
-        return new ResponseEntity<>(HttpStatus.NO_CONTENT); // 204 No Content
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT); // Se uso 204 xq no devuelve nada
     }
 }

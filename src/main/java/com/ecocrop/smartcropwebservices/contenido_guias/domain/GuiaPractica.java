@@ -15,7 +15,7 @@ public class GuiaPractica {
     private Long idGuia;
 
     private String titulo;
-    @Lob // Para mapear a LONGTEXT o TEXT en MySQL
+    @Lob
     private String contenidoHtml;
     private String categoria;
     private String cultivoAplicable;

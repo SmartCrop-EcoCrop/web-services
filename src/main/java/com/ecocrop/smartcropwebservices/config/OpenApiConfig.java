@@ -19,5 +19,5 @@ import io.swagger.v3.oas.annotations.servers.Server;
         }
 )
 public class OpenApiConfig {
-    // Clase vacía, solo contiene la anotación de metadatos
+    // Aca no hay naaaaaaaaaada :P
 }

@@ -19,27 +19,27 @@ public class TareaService {
         this.tareaRepository = tareaRepository;
     }
 
-    // CREATE: Crea una nueva tarea (ej. puede ser generada manualmente por el usuario o por el sistema)
+    // Funcion para crear una tarea nueva (puede ser a mano o la genera el sistema)
     @Transactional
     public Tarea crearTarea(Tarea tarea) {
-        // Lógica de validación inicial
+        // Podriamos poner una validacion aqui antes de guardar
         return tareaRepository.save(tarea);
     }
 
-    // READ: Obtiene todas las tareas pendientes para una finca específica
+    // Trae todas las tareas que estan PENDIENTES para una finca especifica.
     @Transactional(readOnly = true)
     public List<Tarea> obtenerTareasPendientesPorFinca(Long idFinca) {
-        // En este caso, asumimos que todas las tareas en el to-do list se agrupan por Finca
+        // Asumimos que todo el 'to-do list' se organiza por Finca
         return tareaRepository.findByIdFinca(idFinca);
     }
 
-    // UPDATE: Marca una tarea como completada (Lógica de Dominio)
+    // Marcar como que ya se hizo (logica importante aqui)
     @Transactional
     public Tarea completarTarea(Long idTarea) {
         Tarea tarea = tareaRepository.findById(idTarea)
-                .orElseThrow(() -> new RuntimeException("Tarea no encontrada: " + idTarea));
+                .orElseThrow(() -> new RuntimeException("Tarea no se encontro: " + idTarea));
 
-        // Aplicamos lógica de dominio para asegurar que no se complete una tarea cancelada, etc.
+        // Revisamos si la tarea ya esta en un estado final. Por ejem, ya completada.
         if (tarea.getEstado() == EstadoTarea.COMPLETADA) {
             throw new IllegalStateException("La tarea ya estaba completada.");
         }
@@ -51,9 +51,9 @@ public class TareaService {
     @Transactional
     public Tarea marcarComoPendiente(Long idTarea) {
         Tarea tarea = tareaRepository.findById(idTarea)
-                .orElseThrow(() -> new RuntimeException("Tarea no encontrada: " + idTarea));
+                .orElseThrow(() -> new RuntimeException("Tarea no se encontro: " + idTarea));
 
-        // Lógica de dominio: La tarea vuelve a estar activa
+        // Le cambiamos el estado para que vuelva a aparecer en la lista de cosas x hacer
         tarea.setEstado(EstadoTarea.PENDIENTE);
         return tareaRepository.save(tarea);
     }

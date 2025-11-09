@@ -62,7 +62,7 @@ public class ContenidoService {
     // Crear Comentario
     @Transactional
     public Comentario crearComentario(Comentario comentario) {
-        // Lógica de validación y anti-spam
+        // Lógica de validación
         return comentarioRepository.save(comentario);
     }
 

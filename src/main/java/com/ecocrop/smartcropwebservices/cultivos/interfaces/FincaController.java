@@ -32,7 +32,7 @@ public class FincaController {
         return new ResponseEntity<>(nuevaFinca, HttpStatus.CREATED);
     }
 
-    // GET: Obtener todas las Fincas (Sin cambios)
+    // GET: Obtener todas las Fincas
     @GetMapping("/usuario/{idUsuario}")
     public ResponseEntity<List<Finca>> obtenerFincas(@PathVariable Long idUsuario) {
         List<Finca> fincas = fincaService.obtenerFincasPorUsuario(idUsuario);

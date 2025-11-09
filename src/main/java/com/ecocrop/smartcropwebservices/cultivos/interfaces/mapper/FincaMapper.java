@@ -13,7 +13,6 @@ import java.util.stream.Collectors;
 @Component
 public class FincaMapper {
 
-    // NUEVO: Inyección de ParcelaMapper
     private final ParcelaMapper parcelaMapper;
 
     @Autowired
@@ -21,10 +20,9 @@ public class FincaMapper {
         this.parcelaMapper = parcelaMapper;
     }
 
-    // Método principal de mapeo (toEntity)
+    // Metodo principal de mapeo
     public Finca toEntity(FincaRequest dto) {
         Finca finca = new Finca();
-        // ... (resto del código) ...
 
         if (dto.getUbicacionGeo() != null) {
             finca.setUbicacionGeo(toUbicacionGeo(dto.getUbicacionGeo()));
@@ -32,7 +30,6 @@ public class FincaMapper {
 
         if (dto.getParcelas() != null) {
             finca.setParcelas(dto.getParcelas().stream()
-                    // CAMBIO AQUÍ: Usamos el objeto inyectado 'parcelaMapper'
                     .map(pDto -> parcelaMapper.toEntity(pDto))
                     .collect(Collectors.toList()));
         }
@@ -43,7 +40,6 @@ public class FincaMapper {
         return new UbicacionGeo(dto.getLatitud(), dto.getLongitud());
     }
 
-    // (Deberías crear también toDto para mapear Finca -> FincaResponse DTO)
 
 
 }

@@ -24,6 +24,6 @@ public class Parcela {
     // Relación a Finca
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_finca", nullable = false)
-    @JsonBackReference // Lado Hijo: Ignora la Finca para romper el ciclo
+    @JsonBackReference
     private Finca finca;
 }

@@ -9,7 +9,7 @@ import java.util.Optional;
 @Repository
 public interface UsuarioRepository extends JpaRepository<Usuario, Long> {
 
-    // Consulta crítica para la autenticación (Spring Security lo usará)
+
     Optional<Usuario> findByEmail(String email);
 
     // Comprobar si un email ya existe durante el registro

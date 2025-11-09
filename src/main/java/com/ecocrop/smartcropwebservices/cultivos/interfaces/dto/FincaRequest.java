@@ -14,7 +14,7 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 public class FincaRequest {
-    // Nota: El ID no se incluye para creación (POST)
+    // El ID no se incluye para creación (POST)
 
     @NotNull(message = "El ID de usuario es obligatorio.")
     @Positive(message = "El ID de usuario debe ser positivo.")

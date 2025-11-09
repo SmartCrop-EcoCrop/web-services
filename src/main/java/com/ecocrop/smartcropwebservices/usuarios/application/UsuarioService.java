@@ -12,12 +12,11 @@ import java.util.Optional;
 public class UsuarioService {
 
     private final UsuarioRepository usuarioRepository;
-    // private final PasswordEncoder passwordEncoder; // En un proyecto real, esto se inyecta
+
 
     @Autowired
-    public UsuarioService(UsuarioRepository usuarioRepository /*, PasswordEncoder passwordEncoder */) {
+    public UsuarioService(UsuarioRepository usuarioRepository ) {
         this.usuarioRepository = usuarioRepository;
-        // this.passwordEncoder = passwordEncoder;
     }
 
     // Lógica para registrar un nuevo usuario
@@ -27,10 +26,6 @@ public class UsuarioService {
             throw new RuntimeException("El email ya está registrado: " + nuevoUsuario.getEmail());
         }
 
-        // **IMPORTANTE:** Aquí se debería CIFRAR la contraseña antes de guardar.
-        // nuevoUsuario.setPasswordHash(passwordEncoder.encode(nuevoUsuario.getPasswordHash()));
-
-        // Por simplicidad, por ahora guardamos la contraseña sin cifrar para pruebas.
 
         return usuarioRepository.save(nuevoUsuario);
     }
@@ -56,13 +51,9 @@ public class UsuarioService {
         if (usuarioOptional.isPresent()) {
             Usuario usuario = usuarioOptional.get();
 
-            // ⚠️ ADVERTENCIA DE SEGURIDAD ⚠️
-            // En producción, NUNCA compares contraseñas así.
-            // Usa un PasswordEncoder para comparar el password plano con el hash.
-            // if (passwordEncoder.matches(password, usuario.getPasswordHash())) { ... }
 
             if (usuario.getPasswordHash().equals(password)) {
-                return Optional.of(usuario); // Credenciales válidas
+                return Optional.of(usuario);
             }
         }
 

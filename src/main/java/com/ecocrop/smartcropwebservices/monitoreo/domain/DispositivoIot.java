@@ -11,11 +11,10 @@ import java.time.LocalDate;
 @Table(name = "dispositivo_iot")
 public class DispositivoIot {
 
-    // Usamos String para la PK, ya que los IDs IoT suelen ser MAC/Serial
+    // Usamos string para que la pk ya que son dispositivos permita poner el modelo del dispositvio
     @Id
     private String idDispositivo;
 
-    // Referencia simple a la Parcela (del Contexto de Cultivos)
     private Long idParcela;
 
     private String tipoDispositivo; // Ej: 'Sensor de Suelo', 'Estación Meteorológica'

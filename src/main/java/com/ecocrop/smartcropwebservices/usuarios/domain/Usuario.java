@@ -15,13 +15,12 @@ public class Usuario {
     private Long idUsuario;
 
     @Column(unique = true)
-    private String email; // Usado para login
+    private String email;
 
     private String nombre;
     private String apellido;
     private String telefono;
 
-    // Campo crítico para seguridad (Almacenar HASHED/Cifrado)
     private String passwordHash;
 
     private String rol; // Ej: 'AGRICULTOR', 'ADMIN', 'EDITOR'

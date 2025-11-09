@@ -11,8 +11,8 @@ import java.util.List;
 @Entity
 @Getter
 @Setter
-@NoArgsConstructor // Requerido por JPA/Hibernate para instanciar la entidad
-@AllArgsConstructor // Útil para crear objetos de dominio rápidamente
+@NoArgsConstructor
+@AllArgsConstructor
 public class Finca {
 
     @Id
@@ -32,7 +32,7 @@ public class Finca {
 
     // Relación de Parcela dentro del agregado Finca
     @OneToMany(mappedBy = "finca", cascade = CascadeType.ALL, orphanRemoval = true)
-    @JsonManagedReference // Lado Padre: Permite serializar Parcelas
+    @JsonManagedReference
     private List<Parcela> parcelas;
 
     // Método de dominio: Cambiar el nombre (Controla la lógica del cambio)

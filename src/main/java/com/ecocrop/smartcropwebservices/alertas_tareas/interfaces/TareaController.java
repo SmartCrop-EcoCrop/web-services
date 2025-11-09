@@ -24,9 +24,9 @@ public class TareaController {
     }
 
     /**
-     * GET: Obtiene la lista de tareas pendientes para mostrar en el dashboard.
-     * @param idFinca ID de la Finca del agricultor (asumimos que viene del usuario logueado).
-     * @return Lista de Tareas.
+     * Trae la lista de las cosas que hay que hacer para mostrar en el panel principal.
+     * @param idFinca ID de la Finca (asumimos que sabemos quien es el usuario que entro).
+     * @return Lista de Tareas pendientes.
      */
     @GetMapping("/finca/{idFinca}")
     public ResponseEntity<List<Tarea>> obtenerTareasPendientes(@PathVariable Long idFinca) {
@@ -35,9 +35,9 @@ public class TareaController {
     }
 
     /**
-     * POST: Permite al usuario o a otro servicio crear una nueva tarea.
-     * @param tarea Objeto Tarea a crear.
-     * @return La Tarea creada.
+     * Permite crear una nueva tarea (sea el usuario o el sistema automaticamente).
+     * @param tarea El objeto Tarea con la info.
+     * @return La Tarea que se acaba de guardar.
      */
     @PostMapping
     public ResponseEntity<Tarea> crearTarea(@RequestBody Tarea tarea) {
@@ -46,9 +46,9 @@ public class TareaController {
     }
 
     /**
-     * PUT: Marca una tarea como completada (funcionalidad clave del to-do list).
-     * @param idTarea ID de la Tarea a completar.
-     * @return La Tarea actualizada.
+     * Pone la tarea como C O M P L E T A D A (lo mas importante del to-do list).
+     * @param idTarea El ID de la Tarea que se termino.
+     * @return La Tarea actualizada, ya completada.
      */
     @PutMapping("/{idTarea}/completar")
     public ResponseEntity<Tarea> completarTarea(@PathVariable Long idTarea) {
@@ -57,7 +57,7 @@ public class TareaController {
     }
 
     /**
-     * PUT: Marca una tarea como PENDIENTE.
+     * Le da la vuelta, pone la tarea otra vez como PENDIENTE por si hubo algun error.
      */
     @PutMapping("/{idTarea}/pendiente")
     public ResponseEntity<Tarea> marcarPendiente(@PathVariable Long idTarea) {

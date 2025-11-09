@@ -57,7 +57,7 @@ public class FincaService {
 
     // UPDATE: Actualizar una Finca (ACEPTA EL DTO SIMPLE)
     @Transactional
-    public Finca actualizarFinca(Long idFinca, FincaUpdateRequest request) { // <-- CAMBIO AQUÍ
+    public Finca actualizarFinca(Long idFinca, FincaUpdateRequest request) {
         Finca fincaExistente = obtenerFincaPorId(idFinca);
 
         // 1. Actualizar campos simples
@@ -71,12 +71,11 @@ public class FincaService {
             fincaExistente.setUbicacionGeo(nuevaUbicacion);
         }
 
-        // ¡No hay lista de Parcelas que cause conflicto!
 
         return fincaRepository.save(fincaExistente);
     }
 
-    // DELETE: (Este método está correcto)
+    // DELETE:
     @Transactional
     public void eliminarFinca(Long idFinca) {
         Finca finca = obtenerFincaPorId(idFinca);
